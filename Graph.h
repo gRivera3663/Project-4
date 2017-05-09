@@ -6,12 +6,6 @@
 typedef int Vertex;
 using namespace std;
 
-struct AdjList // Edge between these two ->  (num)----(num2)
-{
-    Vertex vert;
-    vector<Vertex> adj;
-};
-
 class Graph {
 public:
 	Graph(int n); // TO DO
@@ -34,7 +28,9 @@ private:
 	// member variables and functions to implement the public member functions
 	map<string,Vertex> labelsToInt; // label = int
 	map<Vertex,string> intToLabels; // int = label
-    vector<AdjList> Adj;
+    vector<Vertex> listOfVert;
+    map<Vertex, vector<Vertex>> adj;
+    int Size;
 };
 
 

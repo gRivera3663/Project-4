@@ -6,13 +6,13 @@
 // TO DO
 // initialize an undirected graph that can store at most n vertices
 Graph::Graph(int n) {
-    Adj.resize(n);
+    Size = n;
 }
 
 // TO DO
 // return the maximum number of vertices
 int Graph::size() {
-    return Adj.size();
+    return Size;
 }
 
 // TO DO
@@ -20,38 +20,27 @@ int Graph::size() {
 void Graph::addLabel(Vertex i, string s) {
     intToLabels[i] = s;
     labelsToInt[s] = i;
-    
-    AdjList temp = {i};
-    Adj.push_back(temp);
 }
 
 // TO DO
 // add an edge between vertices i and j
 void Graph::addEdge(Vertex i, Vertex j) {
-    for (vector<AdjList>::iterator x = Adj.begin(); x != Adj.end(); x++)
-    {
-        if ((*x).vert == i)
-        {
-            (*x).adj.push_back(j);
-        }
-        else if((*x).vert == j)
-        {
-            (*x).adj.push_back(i);
-        }
-    }
+    
+    adj[i].push_back(j);
 }
 
 // TO DO
 // return a vector of vertices adjacent to vertex n
 vector<Vertex> Graph::getAdjacentVertices(Vertex n) {
     vector<Vertex> output;
-    for (vector<AdjList>::iterator x = Adj.begin(); x != Adj.end(); x++)
+    
+    output = adj[n];
+    
+    for (vector<Vertex>::iterator x = output.begin(); x != output.end(); x++)
     {
-        if ((*x).vert == n)
-        {
-            output = (*x).adj;
-        }
+        cout << *x << " ";
     }
+    
     return output;
 }
 
