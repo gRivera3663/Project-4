@@ -32,16 +32,7 @@ void Graph::addEdge(Vertex i, Vertex j) {
 // TO DO
 // return a vector of vertices adjacent to vertex n
 vector<Vertex> Graph::getAdjacentVertices(Vertex n) {
-    vector<Vertex> output;
-    
-    output = adj[n];
-    
-    for (vector<Vertex>::iterator x = output.begin(); x != output.end(); x++)
-    {
-        cout << *x << " ";
-    }
-    
-    return output;
+    return adj[n];
 }
 
 
@@ -53,6 +44,15 @@ vector<string> recommendFriends(Graph &graph, const string &person) {
     Vertex id = graph.getVertex(person);
     
     vector<Vertex> friends = graph.getAdjacentVertices(id);
+    
+    //
+    for (vector<Vertex>::iterator x = friends.begin(); x != friends.end(); x++)
+    {
+        cout << *x << " ";
+    }
+    cout << endl;
+    //
+    
     vector<Vertex> friendsOfFriends;
     
     for (vector<Vertex>::iterator x = friends.begin(); x != friends.end(); x++)
@@ -64,15 +64,28 @@ vector<string> recommendFriends(Graph &graph, const string &person) {
         }
     }
     
+    for (vector<Vertex>::iterator x = friends.begin(); x != friends.end(); x++)
+    {
+        friendsOfFriends.erase(remove(friendsOfFriends.begin(), friendsOfFriends.end(), *x), friendsOfFriends.end());
+    }
+    
     sort(friendsOfFriends.begin(), friendsOfFriends.end());
     friendsOfFriends.erase(unique(friendsOfFriends.begin(), friendsOfFriends.end()), friendsOfFriends.end());
     friendsOfFriends.erase(remove(friendsOfFriends.begin(), friendsOfFriends.end(), id), friendsOfFriends.end());
+    
+    //
+    for (vector<Vertex>::iterator x = friendsOfFriends.begin(); x != friendsOfFriends.end(); x++)
+    {
+        cout << *x << " ";
+    }
+    cout << endl;
+    //
     
     for (vector<Vertex>::iterator x = friendsOfFriends.begin(); x != friendsOfFriends.end(); x++)
     {
         output.push_back(graph.getLabel(*x));
     }
-
+    
     return output;
 }
 
