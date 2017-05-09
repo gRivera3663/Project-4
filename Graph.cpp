@@ -25,7 +25,6 @@ void Graph::addLabel(Vertex i, string s) {
 // TO DO
 // add an edge between vertices i and j
 void Graph::addEdge(Vertex i, Vertex j) {
-    
     adj[i].push_back(j);
 }
 
@@ -42,11 +41,7 @@ vector<Vertex> Graph::getAdjacentVertices(Vertex n) {
 vector<string> recommendFriends(Graph &graph, const string &person) {
     vector<string> output;
     Vertex id = graph.getVertex(person);
-    
     vector<Vertex> friends = graph.getAdjacentVertices(id);
-    
-    
-    
     vector<Vertex> friendsOfFriends;
     
     for (vector<Vertex>::iterator x = friends.begin(); x != friends.end(); x++)
@@ -66,8 +61,6 @@ vector<string> recommendFriends(Graph &graph, const string &person) {
     sort(friendsOfFriends.begin(), friendsOfFriends.end());
     friendsOfFriends.erase(unique(friendsOfFriends.begin(), friendsOfFriends.end()), friendsOfFriends.end());
     friendsOfFriends.erase(remove(friendsOfFriends.begin(), friendsOfFriends.end(), id), friendsOfFriends.end());
-    
-    
     
     for (vector<Vertex>::iterator x = friendsOfFriends.begin(); x != friendsOfFriends.end(); x++)
     {
