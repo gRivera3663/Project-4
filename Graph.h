@@ -6,6 +6,12 @@
 typedef int Vertex;
 using namespace std;
 
+struct AdjList // Edge between these two ->  (num)----(num2)
+{
+    Vertex vert;
+    vector<Vertex> adj;
+};
+
 class Graph {
 public:
 	Graph(int n); // TO DO
@@ -14,16 +20,24 @@ public:
 	void addEdge(Vertex i, Vertex j); // TO DO
 	vector<Vertex> getAdjacentVertices(Vertex); // TO DO
 
-	Vertex getVertex(string label); // OPTIONAL: may help your code
-	string getLabel(Vertex n); // OPTIONAL: may help your code
+	Vertex getVertex(string label) // OPTIONAL: may help your code
+    {
+        return labelsToInt[label];
+    }
+	string getLabel(Vertex n) // OPTIONAL: may help your code
+    {
+        return intToLabels[n];
+    }
 
 private:
 	// TO DO
 	// member variables and functions to implement the public member functions
-	map<string,Vertex> labelsToInt;
-	map<Vertex,string> intToLabels;
-	vector<vector<bool>> adj;
+	map<string,Vertex> labelsToInt; // label = int
+	map<Vertex,string> intToLabels; // int = label
+    vector<AdjList> Adj;
 };
+
+
 
 // TO DO
 // return a list of names that contain friends of friends of person
