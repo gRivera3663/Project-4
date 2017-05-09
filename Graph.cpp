@@ -45,13 +45,7 @@ vector<string> recommendFriends(Graph &graph, const string &person) {
     
     vector<Vertex> friends = graph.getAdjacentVertices(id);
     
-    //
-    for (vector<Vertex>::iterator x = friends.begin(); x != friends.end(); x++)
-    {
-        cout << *x << " ";
-    }
-    cout << endl;
-    //
+    
     
     vector<Vertex> friendsOfFriends;
     
@@ -73,13 +67,7 @@ vector<string> recommendFriends(Graph &graph, const string &person) {
     friendsOfFriends.erase(unique(friendsOfFriends.begin(), friendsOfFriends.end()), friendsOfFriends.end());
     friendsOfFriends.erase(remove(friendsOfFriends.begin(), friendsOfFriends.end(), id), friendsOfFriends.end());
     
-    //
-    for (vector<Vertex>::iterator x = friendsOfFriends.begin(); x != friendsOfFriends.end(); x++)
-    {
-        cout << *x << " ";
-    }
-    cout << endl;
-    //
+    
     
     for (vector<Vertex>::iterator x = friendsOfFriends.begin(); x != friendsOfFriends.end(); x++)
     {
